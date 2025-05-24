@@ -2,7 +2,7 @@ import ProductCard from "@/components/common/ProductCard";
 import type { IProduct } from "@/types/product";
 import { getCategoryName } from "@/util/getCategoryName";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const FlashSaleView = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -23,6 +23,18 @@ const FlashSaleView = () => {
     fetchCategoryProducts();
   }, []);
 
+   const filteredAndSortedProducts = useMemo(() => {
+    const maleCategory = getCategoryName("MALE");
+    const femaleCategory = getCategoryName("FEMALE");
+
+    return products
+      .filter(
+        (product) =>
+          product.category === maleCategory || product.category === femaleCategory
+      )
+      .sort((a, b) => a.id - b.id);
+  }, [products]);
+
   return (
     <div className="container py-5">
       <h4 className="fw-bold text-capitalize mb-4 text-center">Flash Sale</h4>
@@ -34,15 +46,9 @@ const FlashSaleView = () => {
         </div>
       ) : (
         <div className="row g-4">
-          {products
-            .filter(
-              (products) =>
-                products.category === getCategoryName("MALE") ||
-                products.category === getCategoryName("FEMALE")
-            )
-            .map((product) => (
-              <ProductCard product={product} />
-            ))}
+          {filteredAndSortedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       )}
     </div>

@@ -2,7 +2,7 @@ import ProductCard from '@/components/common/ProductCard';
 import type { CategoryPageProps, IProduct } from '@/types/product';
 import { getCategoryName } from '@/util/getCategoryName';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 const CategoryPage: React.FC<CategoryPageProps> = ({ category }) => {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -24,6 +24,15 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category }) => {
     console.log(category)
   }, [category]);
   
+   const filteredAndSortedProducts = useMemo(() => {
+
+    return products
+      .filter(
+        (product) =>
+          product.category === getCategoryName(category)
+      )
+      .sort((a, b) => a.id - b.id);
+  }, [products]);
 
   return (
     <div className="container py-5">
@@ -36,8 +45,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category }) => {
         </div>
       ) : (
         <div className="row g-4">
-          {products.filter(products => products.category === getCategoryName(category)).map(product => (
-            <ProductCard product ={product} />
+          {filteredAndSortedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       )}
