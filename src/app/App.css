@@ -1,0 +1,21 @@
+
+.card {
+  margin: 0.5em;
+}
+
+
+.bg-male {
+  background-color:#2BD9AF;
+}
+
+.bg-female {
+  background-color:#FF5E84;
+}
+
+
+.card-accent {
+  height: 5px;
+  width: 100%;
+  border-radius: 0 0 4px 4px;
+  
+}

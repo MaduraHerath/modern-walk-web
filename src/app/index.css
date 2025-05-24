@@ -1,0 +1,83 @@
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/600.css";
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.section-padding {
+  padding: 2rem 1rem;
+}
+
+.btn-primary {
+  background-color: #000 !important;
+  border-color: #000 !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #222 !important;
+  border-color: #222 !important;
+}
+
+.btn-outline-primary {
+  color: #000 !important;
+  border-color: #000 !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+
+.text-gold {
+  color: #b38d13;
+}
+
+.bg-gold {
+  background-color: #D4AF37;
+  color: #000;
+}
+
+
+
+@media (max-width: 576px) {
+  .section-padding {
+    padding: 1.5rem 0.75rem;
+  }
+}
